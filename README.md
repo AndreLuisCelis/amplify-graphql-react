@@ -1,3 +1,46 @@
+
+
+
+
+
+
+
+
+# Projeto de Aplicação Web com AWS, React e GraphQL
+
+Este projeto aborda a criação de uma aplicação Web usando tecnologias como AWS, React e GraphQL para hospedagem, autenticação, banco de dados e armazenamento de dados.
+
+## Funcionalidades Principais
+
+- **Hospedagem na AWS**: A aplicação React é hospedada na rede de entrega de conteúdo (CDN) global da AWS.
+- **Autenticação**: Implementa um sistema de autenticação para login e logout de usuários.
+- **Banco de Dados e Armazenamento**: Utiliza uma API GraphQL, banco de dados e solução de armazenamento para manipulação e persistência de dados.
+
+## Como Utilizar
+
+1. **Configuração do Ambiente**: Clone este repositório e instale as dependências necessárias.
+2. **Configuração da AWS**: Configure as credenciais e os serviços AWS conforme necessário.
+3. **Desenvolvimento e Testes**: Desenvolva e teste a aplicação localmente.
+4. **Implantação**: Implante a aplicação na AWS seguindo as melhores práticas.
+
+## Requisitos
+
+- Conhecimento básico de React, GraphQL e AWS é recomendado.
+- Conta ativa na AWS para utilizar os serviços.
+
+## Recursos Adicionais
+
+- [Documentação da AWS](https://docs.aws.amazon.com/)
+- [Documentação do React](https://reactjs.org/docs/getting-started.html)
+- [Documentação do GraphQL](https://graphql.org/learn/)
+
+## Contribuição
+
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests para melhorar este projeto.
+
+## Autor
+
+- Andre Luis Celis
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
