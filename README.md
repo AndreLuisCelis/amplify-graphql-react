@@ -15,6 +15,7 @@ Este projeto aborda a criação de uma aplicação Web usando tecnologias como A
 - **Hospedagem na AWS**: A aplicação React é hospedada na rede de entrega de conteúdo (CDN) global da AWS.
 - **Autenticação**: Implementa um sistema de autenticação para login e logout de usuários.
 - **Banco de Dados e Armazenamento**: Utiliza uma API GraphQL, banco de dados e solução de armazenamento para manipulação e persistência de dados.
+- **link para a aplicação**: https://main.d75jachqsr31o.amplifyapp.com/
 
 ## Como Utilizar
 
