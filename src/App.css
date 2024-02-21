@@ -1,5 +1,19 @@
 .App {
-  text-align: center;
+  margin: 1rem 5rem !important;
+  padding: 1rem 2rem !important;
+  background-color: #fefefe !important;
+}
+
+.Heading {
+  margin-bottom: 1rem !important;
+  text-align: center !important;
+}
+
+.form-note {
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem;
+  gap: 2rem;
 }
 
 .App-logo {

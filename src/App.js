@@ -9,7 +9,9 @@ import {
   TextField,
   Image,
   View,
+  Card,
   withAuthenticator,
+  TextAreaField,
 } from "@aws-amplify/ui-react";
 import { listNotes } from "./graphql/queries";
 import {
@@ -18,11 +20,16 @@ import {
 } from "./graphql/mutations";
 import { generateClient } from 'aws-amplify/api';
 import { uploadData, getUrl, remove } from 'aws-amplify/storage';
+import { StorageManager } from '@aws-amplify/ui-react-storage';
+import '@aws-amplify/ui-react/styles.css';
+import  { useRef } from 'react';
 
 const client = generateClient();
 
 const App = ({ signOut }) => {
   const [notes, setNotes] = useState([]);
+  const storageManagerRef = useRef(null);
+  const [imageFile, setImageFile] = useState([]);
 
   useEffect(() => {
     fetchNotes();
@@ -43,10 +50,16 @@ const App = ({ signOut }) => {
     setNotes(notesFromAPI);
   }
 
+  const processFile = ({ file, key }) => {
+    setImageFile(file)
+    return { file, key,metadata: { id: key}};
+  };
+
+
   async function createNote(event) {
     event.preventDefault();
     const form = new FormData(event.target);
-    const image = form.get("image");
+    const image = imageFile;
     const data = {
       name: form.get("name"),
       description: form.get("description"),
@@ -62,6 +75,7 @@ const App = ({ signOut }) => {
     });
     fetchNotes();
     event.target.reset();
+    storageManagerRef.current.clearFiles();
   }
 
   async function deleteNote({ id, name }) {
@@ -75,37 +89,42 @@ const App = ({ signOut }) => {
   }
 
   return (
-    <View className="App">
-      <Heading level={1}>My Notes App</Heading>
-      <View as="form" margin="3rem 0" onSubmit={createNote}>
-        <Flex direction="row" justifyContent="center">
-          <TextField
-            name="name"
-            placeholder="Note Name"
-            label="Note Name"
-            labelHidden
-            variation="quiet"
-            required
-          />
-          <TextField
+    <Card className="App" variation="elevated">
+      <Heading className="Heading" level={1}>My Notes App</Heading>
+      <Card variation="elevated" >
+        <View as="form" className="form-note" onSubmit={createNote}>
+            <TextField
+              name="name"
+              label="Title"
+              required
+            />
+            <TextAreaField
             name="description"
-            placeholder="Note Description"
-            label="Note Description"
-            labelHidden
-            variation="quiet"
+            label="Description"
             required
           />
-          <View
-            name="image"
-            as="input"
-            type="file"
-            style={{ alignSelf: "end" }}
-          />
-          <Button type="submit" variation="primary">
+
+          <StorageManager
+                acceptedFileTypes={['image/*']}
+                accessLevel="guest"
+                maxFileCount={1}
+                isResumable
+                processFile={processFile}
+                ref={storageManagerRef}
+              />
+         
+              {/* <View
+                name="image"
+                as="input"
+                type="file"
+                style={{ alignSelf: "end" }}
+              /> */}
+          <Button style={{ alignSelf: "end" }} width={230} type="submit" variation="primary">
             Create Note
           </Button>
-        </Flex>
       </View>
+      </Card>
+      
       <Heading level={2}>Current Notes</Heading>
       <View margin="3rem 0">
         {notes.map((note) => (
@@ -133,7 +152,7 @@ const App = ({ signOut }) => {
         ))}
       </View>
       <Button onClick={signOut}>Sign Out</Button>
-    </View>
+    </Card> 
   );
 };
 
